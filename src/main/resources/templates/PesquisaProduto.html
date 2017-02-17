@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" >
+	
+	<head>
+		<meta charset="UTF-8" />
+		<title>Pesquisa de produto</title>
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	</head>
+	
+	<body>
+		
+		<nav class="navbar navbar-inverse navbar-static-top" >
+			
+			<div class="container-fluid" >
+				
+				<div class="navbar-header" >
+					
+					<a class="navbar-brand" href="#">CRUD Produto</a>
+					
+					<ul class="nav navbar-nav" >
+						
+						<li>
+							<a href="/produtos/novo">Cadastrar</a>
+						</li>
+						
+						<li>
+							<a href="/produtos">Listar</a>
+						</li>
+						
+					</ul>
+										
+				</div>
+												
+			</div>
+			
+		</nav>
+		
+		<div class="panel panel-default" >
+			
+			<div class="panel-heading" >
+				
+				<div class="clearfix" >
+					
+					<h1 class="panel-title cp-titulo-panel" >Pesquisa de produto</h1>
+					<a class="btn btn-link cp-link-panel" href="/produtos/novo" >Novo produto</a>
+					
+				</div>
+				
+			</div>
+			
+			<div class="panel-body" >
+				
+				<table class="table table-bordered table-striped table-hover" >
+					
+					<thead>
+						
+						<tr>
+							<td class="text-center col-md-1" >Código</td>
+							<td class="text-center col-md-3" >Nome</td>
+							<td class="text-center col-md-2" >Preço</td>
+							<td class="text-center col-md-3" >Categoria</td>
+							<td class="text-center col-md-2">Data de vencimento</td>
+						</tr>
+						
+					</thead>
+					
+					<tbody>
+						
+						<tr>
+							<td colspan="5" >Nenhum produto foi encontrado</td>
+						</tr>
+						
+					</tbody>
+					
+				</table>
+				
+			</div>
+			
+		</div>
+		
+		<script src="/js/jquery-3.1.1.min.js" ></script>
+		<script src="/js/bootstrap.min.js" ></script>
+				
+	</body>
+	
+</html>
