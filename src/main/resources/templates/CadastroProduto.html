@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" >
+	
+	<head>
+		<meta charset="UTF-8" />
+		<title>Cadastro de produto</title>
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	</head>
+	
+	<body>
+		
+		<nav class="navbar navbar-inverse navbar-static-top" >
+			
+			<div class="container-fluid" >
+				
+				<div class="navbar-header" >
+					<a class="navbar-brand" href="#">CRUD Produto</a>
+				</div>
+				
+			</div>
+			
+		</nav>
+		
+		<div class="panel panel-default" >
+			
+			<div class="panel-heading" >
+			
+				<div class="clearfix" >
+					
+					<h1 class="panel-title cp-titulo-panel" >Novo produto</h1>
+					<a class="btn btn-link cp-link-panel" href="/produtos" >Pesquisar produtos</a>
+					
+				</div>
+				
+			</div>
+			
+			<div class="panel-body" >
+				
+				<form class="form-horizontal" >
+					
+					<!-- Código -->
+					<div class="form-group" >
+						
+						<label class="col-sm-2 control-label" for="codigo" >Código</label>
+						
+						<div class="col-sm-2" >
+							<input type="text" class="form-control" id="codigo" placeholder="Código do produto" />
+						</div>
+						
+					</div>
+					
+					<!-- Nome -->
+					<div class="form-group" >
+						
+						<label class="col-sm-2 control-label" for="nome" >Nome</label>
+						
+						<div class="col-sm-3" >
+							<input type="text" class="form-control" id="nome" placeholder="Insira o nome do produto" />
+						</div>
+						
+					</div>
+					
+					<!-- Categoria -->
+					<div class="form-group" >
+						
+						<label class="col-sm-2 control-label" for="categoria" >Categoria</label>
+						
+						<div class="col-sm-3" >
+							<input type="text" class="form-control" id="categoria" placeholder="Insira a categoria do produto" />
+						</div>
+						
+					</div>
+					
+					<!-- Preço -->
+					<div class="form-group" >
+						
+						<label class="col-sm-2 control-label" for="preco" >Preço</label>
+						
+						<div class="col-sm-2" >
+							<input type="text" class="form-control" id="preco" placeholder="Preço do produto" />
+						</div>
+						
+					</div>
+					
+					<!-- Data de vencimento -->
+					<div class="form-group" >
+						
+						<label class="col-sm-2 control-label" for="dataVencimento" >Data de vencimento</label>
+						
+						<div class="col-sm-2" >
+							<input type="text" class="form-control" id="dataVencimento" placeholder="dd/MM/aaaa" />
+						</div>
+						
+					</div>			
+					
+					<!-- Código -->
+					<div class="form-group" >
+						
+						<div class="col-sm-offset-2 col-sm-2" >
+							<input type="submit" class="btn btn-success" value="Salvar" />
+							<input type="reset" class="btn btn-default" value="Limpar" />
+						</div>
+						
+					</div>
+									
+				</form>
+				
+			</div>
+			
+		</div>
+		
+	</body>
+	
+</html>
