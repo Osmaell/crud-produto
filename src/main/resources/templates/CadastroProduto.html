@@ -3,7 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="LayoutPadrao" >
-		
+	
 	<head>
 		<title>Cadastro de produto</title>
 	</head>
@@ -14,107 +14,114 @@
 			
 			<form class="form-horizontal" method="POST" action="/produtos" th:object="${produto}" >
 			
-			
-			<div class="alert alert-success" role="alert" th:if="${!#strings.isEmpty(mensagem)}" >
-			 	<span th:text="${mensagem}" ></span>
-			</div>
-						
-			<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}" >
-				
-			 	<button type="button" class="close" data-dismiss="alert" aria-label="Close" >
-					<span aria-hidden="true">&times;</span>
-				</button>
-							
-				<div th:each="detailedError : ${#fields.detailedErrors()}" >
-					<span th:text="${detailedError.message}"></span>
+				<div class="alert alert-success" role="alert" th:if="${!#strings.isEmpty(mensagem)}" >
+				 	
+				 	<button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+						<span aria-hidden="true">&times;</span>
+					</button>
+				 	
+				 	<span th:text="${mensagem}" ></span>
 				</div>
-								
-			</div>
-						
-			<div class="panel panel-default" >
-				
-				<div class="panel-heading" >
+							
+				<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}" >
 					
-					<div class="clearfix" >
-						
-						<h1 class="panel-title cp-titulo-panel" >Novo produto</h1>
-						<a class="btn btn-link cp-link-panel" href="/produtos" >Pesquisar produtos</a>
-						
+				 	<button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+						<span aria-hidden="true">&times;</span>
+					</button>
+					
+					<div th:each="detailedError : ${#fields.detailedErrors()}" >
+						<span th:text="${detailedError.message}"></span>
 					</div>
 					
 				</div>
-				
-				<div class="panel-body" >
 						
-						<!-- Código -->
-						<div class="form-group" >
+				<div class="panel panel-default" >
+					
+					<div class="panel-heading" >
+						
+						<div class="clearfix" >
 							
-							<label class="col-sm-2 control-label" for="codigo" >Código</label>
-							
-							<div class="col-sm-2" >
-								<input type="text" class="form-control" id="codigo" name="codigo" placeholder="Código do produto" />
-							</div>
+							<h1 class="panel-title cp-titulo-panel" >Novo produto</h1>
+							<a class="btn btn-link cp-link-panel" href="/produtos" >Pesquisar produtos</a>
 							
 						</div>
 						
-						<!-- Nome -->
-						<div class="form-group" >
+					</div>
+					
+					<div class="panel-body" >
 							
-							<label class="col-sm-2 control-label" for="nome" >Nome</label>
-							
-							<div class="col-sm-3" >
-								<input type="text" class="form-control" id="nome" name="nome" placeholder="Informe o nome do produto" />
+							<!-- Código -->
+							<div class="form-group" >
+								
+								<label class="col-sm-2 control-label" for="codigo" >Código</label>
+								
+								<div class="col-sm-2" >
+									<input type="text" class="form-control" id="codigo" th:field="*{codigo}" placeholder="Código do produto" />
+								</div>
+								
 							</div>
 							
-						</div>
-						
-						<!-- Categoria -->
-						<div class="form-group" >
-							
-							<label class="col-sm-2 control-label" for="categoria" >Categoria</label>
-							
-							<div class="col-sm-3" >
-								<input type="text" class="form-control" id="categoria" name="categoria" placeholder="Informe a categoria do produto" />
+							<!-- Nome -->
+							<div class="form-group" >
+								
+								<label class="col-sm-2 control-label" for="nome" >Nome</label>
+								
+								<div class="col-sm-3" >
+									<input type="text" class="form-control" id="nome" th:field="*{nome}" placeholder="Informe o nome do produto" />
+								</div>
+								
 							</div>
 							
-						</div>
-											
-						<!-- Preço -->
-						<div class="form-group" >
-							
-							<label class="col-sm-2 control-label" for="preco" >Preço</label>
-							
-							<div class="col-sm-2" >
-								<input type="text" class="form-control" id="preco" name="preco" placeholder="R$ 0,00" />
+							<!-- Categoria -->
+							<div class="form-group" >
+								
+								<label class="col-sm-2 control-label" for="categoria" >Categoria</label>
+								
+								<div class="col-sm-3" >
+									<input type="text" class="form-control" id="categoria" th:field="*{categoria}" placeholder="Informe a categoria do produto" />
+								</div>
+								
+							</div>
+										
+							<!-- Preço -->
+							<div class="form-group" >
+								
+								<label class="col-sm-2 control-label" for="preco" >Preço</label>
+								
+								<div class="col-sm-2" >
+									<input type="text" class="form-control js-currency" id="preco" th:field="*{preco}" placeholder="R$ 0,00" />
+								</div>
+								
 							</div>
 							
-						</div>
-						
-						<!-- Data de vencimento -->
-						<div class="form-group" >
+							<!-- Data de vencimento -->
+							<div class="form-group" >
+								
+								<label class="col-sm-2 control-label" for="dataVencimento" >Data de vencimento</label>
+								
+								<div class="col-sm-2" >
+									<input type="text" class="form-control" id="dataVencimento" th:field="*{dataVencimento}"
+										placeholder="dd/mm/aaaa" data-provide="datepicker" data-date-format="dd/mm/yyyy"
+										data-date-language="pt-BR" data-date-autoclose="true" data-date-today-highlight="true"
+										data-date-orientation="bottom" />
+								</div>
+								
+							</div>			
 							
-							<label class="col-sm-2 control-label" for="dataVencimento" >Data de vencimento</label>
-							
-							<div class="col-sm-2" >
-								<input type="text" class="form-control" id="dataVencimento" name="dataVencimento" placeholder="dd/mm/aaaa" />
+							<!-- Botões -->
+							<div class="form-group" >
+								
+								<div class="col-sm-offset-2 col-sm-2" >
+									<input type="submit" class="btn btn-success" value="Salvar" />
+									<input type="reset" class="btn btn-default" value="Limpar" />
+								</div>
+								
 							</div>
 							
-						</div>			
-						
-						<!-- Botões -->
-						<div class="form-group" >
-							
-							<div class="col-sm-offset-2 col-sm-2" >
-								<input type="submit" class="btn btn-success" value="Salvar" />
-								<input type="reset" class="btn btn-default" value="Limpar" />
-							</div>
-							
-						</div>
-							
+					</div>
+								
 				</div>
 				
-			</div>
-			
 			</form>
 			
 		</section>
