@@ -67,7 +67,7 @@
 						</tr>
 						
 					</thead>
-					
+									
 					<tbody>
 						
 						<tr th:each="produto : ${produtos}" >
@@ -83,7 +83,7 @@
 							
 							<td class="text-center" >
 								
-								<a class="btn btn-link btn-xs" href="#" >
+								<a class="btn btn-link btn-xs" th:href="@{/produtos/{codigo}(codigo=${produto.id})}" >
 									<span class="glyphicon glyphicon-pencil"></span>
 								</a>
 								

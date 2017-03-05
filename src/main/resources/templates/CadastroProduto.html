@@ -50,16 +50,18 @@
 					
 					<div class="panel-body" >
 							
-							<!-- Código -->
-							<div class="form-group" >
+						<input type="hidden" th:field="*{id}" />
+							
+						<!-- Código -->
+						<div class="form-group" >
 								
-								<label class="col-sm-2 control-label" for="codigo" >Código</label>
+							<label class="col-sm-2 control-label" for="codigo" >Código</label>
 								
-								<div class="col-sm-2" >
-									<input type="text" class="form-control" id="codigo" th:field="*{codigo}" placeholder="Código do produto" />
-								</div>
-								
+							<div class="col-sm-2" >
+								<input type="text" class="form-control" id="codigo" th:field="*{codigo}" placeholder="Código do produto" />
 							</div>
+								
+						</div>
 							
 							<!-- Nome -->
 							<div class="form-group" >
