@@ -58,18 +58,49 @@
 						
 						<tr>
 							<td class="text-center col-md-1" >Código</td>
-							<td class="text-center col-md-3" >Nome</td>
+							<td class="text-center col-md-2" >Nome</td>
 							<td class="text-center col-md-2" >Preço</td>
-							<td class="text-center col-md-3" >Categoria</td>
+							<td class="text-center col-md-1" >Quantidade</td>
+							<td class="text-center col-md-2" >Categoria</td>
 							<td class="text-center col-md-2">Data de vencimento</td>
+							<th class="col-md-1"></th>
 						</tr>
 						
 					</thead>
 					
 					<tbody>
 						
-						<tr>
-							<td colspan="5" >Nenhum produto foi encontrado</td>
+						<tr th:each="produto : ${produtos}" >
+							<td class="text-center col-md-1" th:text="${produto.codigo}" ></td>
+							<td class="text-center col-md-2" th:text="${produto.nome}" ></td>
+							<td class="text-center col-md-2" th:text="| R$ ${{produto.preco}}|" ></td>
+							<td class="text-center col-md-1" th:text="${produto.quantidade}" ></td>
+							<td class="text-center col-md-2" th:text="${produto.categoria}" ></td>
+							<td class="text-center col-md-2" >
+								<span class="label" th:text="${{produto.dataVencimento}}" 
+									th:classappend="${produto.vencido} ? 'label-danger' : 'label-success' " ></span>
+							</td>
+							
+							<td class="text-center" >
+								
+								<a class="btn btn-link btn-xs" href="#" >
+									<span class="glyphicon glyphicon-pencil"></span>
+								</a>
+								
+								<a class="btn btn-link btn-xs" href="#" >
+									<span class="glyphicon glyphicon-remove"></span>
+								</a>
+								
+								<a class="btn btn-link btn-xs" href="#" >
+									<span class="glyphicon glyphicon-check"></span>
+								</a>
+								
+							</td>
+							
+						</tr>
+						
+						<tr th:if="${#lists.isEmpty(produtos)}" >
+							<td colspan="6" >Nenhum produto foi encontrado</td>
 						</tr>
 						
 					</tbody>

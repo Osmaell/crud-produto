@@ -1,6 +1,7 @@
 package br.com.osmael.crud.produto.entity;
 
 import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -42,6 +43,12 @@ public class Produto {
 	@DecimalMax(value = "9999999", message = "Valor não pode ser 9.999.999")
 	@NumberFormat(pattern = "#,##0.00")
 	private BigDecimal preco;
+	
+	@NotNull(message = "Quantidade é obrigatória")
+	@DecimalMin(value = "0", message = "Quantidade não pode ser menor que 0")
+	@DecimalMax(value = "9999999", message = "Quantidade não pode ser maior que 9.999.999")
+	@NumberFormat(pattern = "#,##0.00")
+	private Integer quantidade;
 	
 	@NotNull(message = "Data de vencimento é obrigatória")
 	@DateTimeFormat(pattern="dd/MM/yyyy")
@@ -95,6 +102,25 @@ public class Produto {
 
 	public void setDataVencimento(Date dataVencimento) {
 		this.dataVencimento = dataVencimento;
+	}
+	
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+	
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
+	}
+	
+	public boolean isVencido() {
+		
+		int verifica = Calendar.getInstance().getTime().compareTo(dataVencimento);
+		
+		if (verifica == 1) {
+			return true;
+		}
+		
+		return false;
 	}
 	
 	@Override

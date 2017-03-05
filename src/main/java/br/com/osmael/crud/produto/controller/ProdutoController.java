@@ -8,6 +8,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.osmael.crud.produto.entity.Produto;
@@ -47,8 +48,12 @@ public class ProdutoController {
 	}
 	
 	@RequestMapping
-	public String pesquisar() {
-		return "PesquisaProduto";
+	public ModelAndView pesquisar() {
+		
+		ModelAndView mv = new ModelAndView("PesquisaProduto");
+		mv.addObject("produtos", produtos.findAll());
+		
+		return mv;
 	}
 	
 }
