@@ -3,6 +3,16 @@
 	margin-right: 10px;
 }
 
+.alert-success {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.alert-danger {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
 .cp-titulo-panel {
 	float: left;
 	padding-top: 2px;
