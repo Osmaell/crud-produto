@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" >
+	
+	<!-- Modal -->
+	<div class="modal fade" id="excluirProdutoDialogo" tabindex="-1" data-keyboard="false" data-backdrop="static" role="dialog" th:fragment="modal-dialogo" >
+		
+		<div class="modal-dialog  modal-sm" >
+			
+			<form th:attr="data-url-base='/produtos'" method="POST" >
+				
+				<input type="hidden" name="_method" value="DELETE" />
+				
+				<div class="modal-content" >
+					
+					<div class="modal-header" >
+						
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+							<span aria-hidden="true">&times;</span>
+						</button>
+						
+						<h4 class="modal-title" >Você tem certeza?</h4>
+						
+					</div>
+					
+					<div class="modal-body" >
+						<span>Tem certeza que deseja excluir o produto <strong>produto?</strong></span>
+					</div>
+					
+					<div class="modal-footer" >
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						<button type="submit" class="btn btn-primary">Excluir</button>
+					</div>
+					
+				</div>
+				
+			</form>
+			
+		</div>
+				
+	</div>
+	
+</html>

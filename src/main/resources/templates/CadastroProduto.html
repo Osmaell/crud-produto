@@ -53,8 +53,8 @@
 						<input type="hidden" th:field="*{id}" />
 							
 						<!-- Código -->
-						<div class="form-group" >
-								
+						<div class="form-group" th:classappend="${#fields.hasErrors('codigo')} ? 'has-error'" >
+							
 							<label class="col-sm-2 control-label" for="codigo" >Código</label>
 								
 							<div class="col-sm-2" >
@@ -64,7 +64,7 @@
 						</div>
 							
 							<!-- Nome -->
-							<div class="form-group" >
+							<div class="form-group" th:classappend="${#fields.hasErrors('nome')} ? 'has-error'" >
 								
 								<label class="col-sm-2 control-label" for="nome" >Nome</label>
 								
@@ -75,7 +75,7 @@
 							</div>
 							
 							<!-- Categoria -->
-							<div class="form-group" >
+							<div class="form-group" th:classappend="${#fields.hasErrors('categoria')} ? 'has-error'" >
 								
 								<label class="col-sm-2 control-label" for="categoria" >Categoria</label>
 								
@@ -84,9 +84,9 @@
 								</div>
 								
 							</div>
-										
+									
 							<!-- Preço -->
-							<div class="form-group" >
+							<div class="form-group" th:classappend="${#fields.hasErrors('preco')} ? 'has-error'" >
 								
 								<label class="col-sm-2 control-label" for="preco" >Preço</label>
 								
@@ -97,7 +97,7 @@
 							</div>
 							
 							<!-- Quantidade -->
-							<div class="form-group" >
+							<div class="form-group" th:classappend="${#fields.hasErrors('quantidade')} ? 'has-error'" >
 								
 								<label class="col-sm-2 control-label" for="quantidade" >Quantidade</label>
 								
@@ -108,7 +108,7 @@
 							</div>
 							
 							<!-- Data de vencimento -->
-							<div class="form-group" >
+							<div class="form-group" th:classappend="${#fields.hasErrors('dataVencimento')} ? 'has-error'">
 								
 								<label class="col-sm-2 control-label" for="dataVencimento" >Data de vencimento</label>
 								
@@ -126,7 +126,6 @@
 								
 								<div class="col-sm-offset-2 col-sm-2" >
 									<input type="submit" class="btn btn-success" value="Salvar" />
-									<input type="reset" class="btn btn-default" value="Limpar" />
 								</div>
 								
 							</div>
@@ -134,9 +133,9 @@
 					</div>
 								
 				</div>
-				
+					
 			</form>
-			
+						
 		</section>
 		
 	</body>

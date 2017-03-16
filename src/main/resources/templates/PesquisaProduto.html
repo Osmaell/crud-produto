@@ -37,6 +37,15 @@
 			
 		</nav>
 		
+		<div class="alert alert-success" role="alert" th:if="${!#strings.isEmpty(mensagem)}" >
+			
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+				<span aria-hidden="true">&times;</span>
+			</button>
+			
+			<span th:text="${mensagem}" ></span>
+		</div>
+		
 		<div class="panel panel-default" >
 			
 			<div class="panel-heading" >
@@ -83,11 +92,13 @@
 							
 							<td class="text-center" >
 								
-								<a class="btn btn-link btn-xs" th:href="@{/produtos/{codigo}(codigo=${produto.id})}" >
+								<a class="btn btn-link btn-xs" th:href="@{/produtos/{codigo}(codigo=${produto.id})}"
+									title="Edição" rel="tooltip" data-placement="top" >
 									<span class="glyphicon glyphicon-pencil"></span>
 								</a>
 								
-								<a class="btn btn-link btn-xs" href="#" >
+								<a class="btn btn-link btn-xs" data-toggle="modal" data-target="#excluirProdutoDialogo"
+										th:attr="data-codigo=${produto.id}, data-nome=${produto.nome}" >
 									<span class="glyphicon glyphicon-remove"></span>
 								</a>
 								
@@ -107,12 +118,18 @@
 					
 				</table>
 				
+				<div th:replace="ExcluirProdutoDialogo :: modal-dialogo" ></div>
+				
 			</div>
 			
 		</div>
 		
 		<script src="/js/jquery-3.1.1.min.js" ></script>
 		<script src="/js/bootstrap.min.js" ></script>
+		<script src="/js/bootstrap-datepicker.min.js"></script>
+		<script src="/js/bootstrap-datepicker.pt-BR.min.js"></script>
+		<script src="/js/jquery.maskMoney.min.js"></script>
+		<script src="/js/crud-produto.js"></script>
 				
 	</body>
 	

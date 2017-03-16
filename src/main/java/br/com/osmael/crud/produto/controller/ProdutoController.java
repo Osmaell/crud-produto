@@ -66,4 +66,11 @@ public class ProdutoController {
 		return mv;
 	}
 	
+	@RequestMapping(value = "{codigo}", method = RequestMethod.DELETE)
+	public String exclui(@PathVariable Long codigo, RedirectAttributes attributes) {
+		produtos.delete(codigo);
+		attributes.addFlashAttribute("mensagem", "Produto excluído com sucesso!");
+		return "redirect:/produtos";
+	}
+	
 }
