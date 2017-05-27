@@ -1,3 +1,3 @@
 # crud-produto
 
-Simples CRUD de produto utilizando o Spring MVC.
+Simples CRUD de produto utilizando o Spring Boot.
