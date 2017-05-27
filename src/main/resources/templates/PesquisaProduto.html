@@ -1,136 +1,95 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org" >
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="LayoutPadrao" >
 	
 	<head>
-		<meta charset="UTF-8" />
 		<title>Pesquisa de produto</title>
-		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
-		<link rel="stylesheet" type="text/css" href="/css/style.css" />
 	</head>
-	
+		
 	<body>
 		
-		<nav class="navbar navbar-inverse navbar-static-top" >
+		<section layout:fragment="conteudo" >
 			
-			<div class="container-fluid" >
+			<div th:replace="MensagemSucesso :: msg-sucesso" ></div>
+			
+			<div class="panel panel-default" >
 				
-				<div class="navbar-header" >
+				<div class="panel-heading" >
 					
-					<a class="navbar-brand" href="#">CRUD Produto</a>
+					<div class="clearfix" >
+						
+						<h1 class="panel-title cp-titulo-panel" >Pesquisa de produto</h1>
+						<a class="btn btn-link cp-link-panel" href="/produtos/novo" >Novo produto</a>
+						
+					</div>
 					
-					<ul class="nav navbar-nav" >
+				</div>
+				
+				<div class="panel-body" >
+					
+					<table class="table table-bordered table-striped table-hover" >
 						
-						<li>
-							<a href="/produtos/novo">Cadastrar</a>
-						</li>
-						
-						<li>
-							<a href="/produtos">Listar</a>
-						</li>
-						
-					</ul>
+						<thead>
+							
+							<tr>
+								<td class="text-center col-md-1" >Código</td>
+								<td class="text-center col-md-2" >Nome</td>
+								<td class="text-center col-md-2" >Preço</td>
+								<td class="text-center col-md-1" >Quantidade</td>
+								<td class="text-center col-md-2" >Categoria</td>
+								<td class="text-center col-md-2">Data de vencimento</td>
+								<th class="col-md-1"></th>
+							</tr>
+							
+						</thead>
+										
+						<tbody>
+							
+							<tr th:each="produto : ${produtos}" >
+								<td class="text-center col-md-1" th:text="${produto.codigo}" ></td>
+								<td class="text-center col-md-2" th:text="${produto.nome}" ></td>
+								<td class="text-center col-md-2" th:text="| R$ ${{produto.preco}}|" ></td>
+								<td class="text-center col-md-1" th:text="${produto.quantidade}" ></td>
+								<td class="text-center col-md-2" th:text="${produto.categoria}" ></td>
+								<td class="text-center col-md-2" >
+									<span class="label" th:text="${{produto.dataVencimento}}" 
+										th:classappend="${produto.vencido} ? 'label-danger' : 'label-success' " ></span>
+								</td>
 								
-				</div>
-												
-			</div>
-			
-		</nav>
-		
-		<div class="alert alert-success" role="alert" th:if="${!#strings.isEmpty(mensagem)}" >
-			
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close" >
-				<span aria-hidden="true">&times;</span>
-			</button>
-			
-			<span th:text="${mensagem}" ></span>
-		</div>
-		
-		<div class="panel panel-default" >
-			
-			<div class="panel-heading" >
-				
-				<div class="clearfix" >
-					
-					<h1 class="panel-title cp-titulo-panel" >Pesquisa de produto</h1>
-					<a class="btn btn-link cp-link-panel" href="/produtos/novo" >Novo produto</a>
-					
-				</div>
-				
-			</div>
-			
-			<div class="panel-body" >
-				
-				<table class="table table-bordered table-striped table-hover" >
-					
-					<thead>
-						
-						<tr>
-							<td class="text-center col-md-1" >Código</td>
-							<td class="text-center col-md-2" >Nome</td>
-							<td class="text-center col-md-2" >Preço</td>
-							<td class="text-center col-md-1" >Quantidade</td>
-							<td class="text-center col-md-2" >Categoria</td>
-							<td class="text-center col-md-2">Data de vencimento</td>
-							<th class="col-md-1"></th>
-						</tr>
-						
-					</thead>
+								<td class="text-center" >
 									
-					<tbody>
-						
-						<tr th:each="produto : ${produtos}" >
-							<td class="text-center col-md-1" th:text="${produto.codigo}" ></td>
-							<td class="text-center col-md-2" th:text="${produto.nome}" ></td>
-							<td class="text-center col-md-2" th:text="| R$ ${{produto.preco}}|" ></td>
-							<td class="text-center col-md-1" th:text="${produto.quantidade}" ></td>
-							<td class="text-center col-md-2" th:text="${produto.categoria}" ></td>
-							<td class="text-center col-md-2" >
-								<span class="label" th:text="${{produto.dataVencimento}}" 
-									th:classappend="${produto.vencido} ? 'label-danger' : 'label-success' " ></span>
-							</td>
+									<a class="btn btn-link btn-xs" th:href="@{/produtos/{codigo}(codigo=${produto.id})}"
+										title="Edição" rel="tooltip" data-placement="top" >
+										<span class="glyphicon glyphicon-pencil"></span>
+									</a>
+									
+									<a class="btn btn-link btn-xs" data-toggle="modal" data-target="#excluirProdutoDialogo"
+											th:attr="data-codigo=${produto.id}, data-nome=${produto.nome}" >
+										<span class="glyphicon glyphicon-remove"></span>
+									</a>
+									
+								</td>
+								
+							</tr>
 							
-							<td class="text-center" >
-								
-								<a class="btn btn-link btn-xs" th:href="@{/produtos/{codigo}(codigo=${produto.id})}"
-									title="Edição" rel="tooltip" data-placement="top" >
-									<span class="glyphicon glyphicon-pencil"></span>
-								</a>
-								
-								<a class="btn btn-link btn-xs" data-toggle="modal" data-target="#excluirProdutoDialogo"
-										th:attr="data-codigo=${produto.id}, data-nome=${produto.nome}" >
-									<span class="glyphicon glyphicon-remove"></span>
-								</a>
-								
-								<a class="btn btn-link btn-xs" href="#" >
-									<span class="glyphicon glyphicon-check"></span>
-								</a>
-								
-							</td>
+							<tr th:if="${#lists.isEmpty(produtos)}" >
+								<td colspan="7" >Nenhum produto foi encontrado</td>
+							</tr>
 							
-						</tr>
+						</tbody>
 						
-						<tr th:if="${#lists.isEmpty(produtos)}" >
-							<td colspan="6" >Nenhum produto foi encontrado</td>
-						</tr>
-						
-					</tbody>
+					</table>
 					
-				</table>
+				</div>
 				
 				<div th:replace="ExcluirProdutoDialogo :: modal-dialogo" ></div>
 				
 			</div>
-			
-		</div>
+						
+		</section>
 		
-		<script src="/js/jquery-3.1.1.min.js" ></script>
-		<script src="/js/bootstrap.min.js" ></script>
-		<script src="/js/bootstrap-datepicker.min.js"></script>
-		<script src="/js/bootstrap-datepicker.pt-BR.min.js"></script>
-		<script src="/js/jquery.maskMoney.min.js"></script>
-		<script src="/js/crud-produto.js"></script>
-				
 	</body>
 	
 </html>

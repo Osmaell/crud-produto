@@ -2,12 +2,13 @@ $(function(){
 	
 	$('[rel="tooltip"]').tooltip();
 	$('.js-currency').maskMoney({thousands: '.', decimal: ','});
-	$('.js-currency-quant').maskMoney({precision: 0});
+	$('.js-currency-quant').maskMoney({precision: 0, decimal: ',', thousands: '.'});
+	$('.js-codigo').mask('000000');
 	
 });
 
 $('#excluirProdutoDialogo').on('show.bs.modal', function(event){
-
+	
 	var button = $(event.relatedTarget);
 	
 	var codigoProduto = button.data('codigo');
