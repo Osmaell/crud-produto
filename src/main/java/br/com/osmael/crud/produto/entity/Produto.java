@@ -31,6 +31,7 @@ public class Produto implements Serializable {
 	private Long id;
 	
 	@NotBlank(message = "O código é obrigatório")
+	@Column(unique = true)
 	private String codigo;
 	
 	@NotBlank(message = "Nome é obrigatório")

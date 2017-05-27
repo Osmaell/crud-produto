@@ -1,7 +1,6 @@
 package br.com.osmael.crud.produto.controller;
 	
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -16,6 +15,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.osmael.crud.produto.entity.Produto;
 import br.com.osmael.crud.produto.repository.Produtos;
+import br.com.osmael.crud.produto.service.FormatoDataInvalidoException;
+import br.com.osmael.crud.produto.service.ProdutoService;
 	
 @Controller
 @RequestMapping("/produtos")
@@ -25,6 +26,9 @@ public class ProdutoController {
 	
 	@Autowired
 	private Produtos produtos;
+	
+	@Autowired
+	private ProdutoService produtoService;
 	
 	@GetMapping("/novo")
 	public String novo(Model model) {
@@ -40,11 +44,11 @@ public class ProdutoController {
 		}
 		
 		try {
-			produtos.save(produto);
+			produtoService.salvar(produto);
 			attributes.addFlashAttribute("mensagem", "Produto salvo com sucesso!");
 			return "redirect:/produtos/novo";
-		} catch (DataIntegrityViolationException e) {
-			errors.rejectValue("dataVencimento", null, "Formato de data inválido!");
+		} catch (FormatoDataInvalidoException e) {
+			errors.rejectValue("dataVencimento", e.getMessage(), e.getMessage());
 			return CADASTRO_VIEW;
 		}
 		
@@ -70,7 +74,7 @@ public class ProdutoController {
 	
 	@DeleteMapping(value = "{codigo}")
 	public String exclui(@PathVariable Long codigo, RedirectAttributes attributes) {
-		produtos.delete(codigo);
+		this.produtoService.excluir(codigo);
 		attributes.addFlashAttribute("mensagem", "Produto excluído com sucesso!");
 		return "redirect:/produtos";
 	}
