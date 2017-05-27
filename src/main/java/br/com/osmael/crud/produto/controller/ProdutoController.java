@@ -6,9 +6,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -24,13 +26,13 @@ public class ProdutoController {
 	@Autowired
 	private Produtos produtos;
 	
-	@RequestMapping("/novo")
+	@GetMapping("/novo")
 	public String novo(Model model) {
 		model.addAttribute(new Produto());
 		return CADASTRO_VIEW;
 	}
 	
-	@RequestMapping(method=RequestMethod.POST)
+	@PostMapping
 	public String salvar(@Validated Produto produto, Errors errors, RedirectAttributes attributes) {
 		
 		if (errors.hasErrors()) {
@@ -48,7 +50,7 @@ public class ProdutoController {
 		
 	}
 	
-	@RequestMapping("{codigo}")
+	@GetMapping("{codigo}")
 	public ModelAndView edicao(@PathVariable("codigo") Produto produto) {
 		
 		ModelAndView mv = new ModelAndView(CADASTRO_VIEW);
@@ -57,7 +59,7 @@ public class ProdutoController {
 		return mv;
 	}
 	
-	@RequestMapping
+	@GetMapping
 	public ModelAndView pesquisar() {
 		
 		ModelAndView mv = new ModelAndView("PesquisaProduto");
@@ -66,7 +68,7 @@ public class ProdutoController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "{codigo}", method = RequestMethod.DELETE)
+	@DeleteMapping(value = "{codigo}")
 	public String exclui(@PathVariable Long codigo, RedirectAttributes attributes) {
 		produtos.delete(codigo);
 		attributes.addFlashAttribute("mensagem", "Produto excluído com sucesso!");
